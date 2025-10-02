@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Portal - Captured Photos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { margin-bottom: 20px; }
+        .photo-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .photo-item { border: 1px solid #ccc; padding: 10px; }
+        .photo-item img { max-width: 200px; max-height: 150px; display: block; margin-bottom: 5px; }
+        .photo-item a { text-decoration: none; color: #007BFF; }
+    </style>
+</head>
+<body>
+    <h1>Captured Photos</h1>
+    {% if photos %}
+    <div class="photo-list">
+        {% for photo in photos %}
+        <div class="photo-item">
+            <img src="{{ url_for('uploaded_file', filename=photo) }}" alt="Captured Photo" />
+            <a href="{{ url_for('uploaded_file', filename=photo) }}" target="_blank" download>Download</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No photos captured yet.</p>
+    {% endif %}
+</body>
+</html>
